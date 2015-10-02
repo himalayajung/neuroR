@@ -7,7 +7,7 @@ par_forest = function(x,y,ntree=1000,proximity=proximity,importance=importance,n
           #start time
           strt = Sys.time()
           #loop
-          rf <-foreach(ntree=rep(ntree %/% n_cluster,n_cluster), .combine=randomForest::combine,.packages='randomForest') %dopar% {
+          rf = foreach(ntree=rep(ntree %/% n_cluster,n_cluster), .combine=randomForest::combine,.packages='randomForest') %dopar% {
             randomForest(x=x,y=y,ntree=ntree,proximity=proximity,importance=importance) 
           }
           print(Sys.time()-strt)
